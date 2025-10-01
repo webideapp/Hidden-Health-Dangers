@@ -1,0 +1,724 @@
+      <!DOCTYPE html>
+      <html lang="en">
+      <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Hidden Health Dangers</title>
+        <style>/* --- GLOBAL STYLES & VARIABLES --- */
+:root {
+    --primary-font: 'Lato', sans-serif;
+    --secondary-font: 'Merriweather', serif;
+    --text-color: #333333;
+    --background-color: #f9f9f9;
+    --container-background: #ffffff;
+    --accent-color: #d9534f; /* Alarming Red */
+    --meta-color: #777777;
+    --border-color: #eeeeee;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--secondary-font);
+    line-height: 1.7;
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+}
+
+/* --- HEADER & NAVIGATION --- */
+.site-header {
+    background-color: var(--container-background);
+    padding: 15px 20px;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    position: sticky;
+    top: 0;
+    z-index: 999;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-family: var(--primary-font);
+    font-size: 1.8em;
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.main-nav a {
+    font-family: var(--primary-font);
+    text-decoration: none;
+    color: var(--text-color);
+    margin-left: 15px;
+    font-weight: 700;
+}
+
+/* --- MAIN CONTENT & ARTICLE STYLING --- */
+.content-wrapper {
+    max-width: 800px;
+    margin: 30px auto;
+    background-color: var(--container-background);
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+}
+
+.article-header {
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.category-tag {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 5px 15px;
+    border-radius: 50px;
+    font-family: var(--primary-font);
+    font-size: 0.8em;
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+}
+
+h1 {
+    font-family: var(--primary-font);
+    font-size: 2.2em;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-family: var(--primary-font);
+    font-size: 1.5em;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--meta-color);
+    margin-bottom: 20px;
+}
+
+.author-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.author-photo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.author-details {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.author-details span {
+    font-family: var(--primary-font);
+    font-weight: 700;
+}
+
+.meta-info {
+    font-size: 0.9em;
+    color: var(--meta-color);
+    font-weight: 400 !important;
+}
+
+.featured-image {
+    margin-bottom: 25px;
+}
+
+.featured-image figcaption {
+    font-size: 0.9em;
+    color: var(--meta-color);
+    text-align: center;
+    margin-top: 8px;
+}
+
+.article-body p {
+    margin-bottom: 1.5em;
+    font-size: 1.1em;
+}
+
+.intro-paragraph {
+    font-size: 1.2em;
+    font-weight: 700;
+    color: #555;
+}
+
+.content-image {
+    margin: 20px 0;
+}
+
+.key-takeaways {
+    background-color: #f0f8ff;
+    border-left: 5px solid #4682b4;
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 5px;
+}
+
+.key-takeaways h3 {
+    font-family: var(--primary-font);
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+
+.key-takeaways ul {
+    list-style-position: inside;
+    padding-left: 10px;
+}
+
+.key-takeaways li {
+    margin-bottom: 10px;
+}
+
+/* New styles for food teasers */
+.food-teaser-section {
+    background-color: #fff0f0; /* Light red/pink to signify danger/urgency */
+    border: 1px dashed var(--accent-color);
+    padding: 20px;
+    margin: 30px 0;
+    border-radius: 8px;
+    text-align: center;
+    opacity: 0; /* Will be faded in by JS */
+    transform: translateY(30px); /* Will be faded in by JS */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.food-teaser-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.food-teaser-section h3 {
+    font-family: var(--primary-font);
+    color: var(--accent-color);
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.food-teaser-section .anxiety-text {
+    font-style: italic;
+    color: #555;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 0;
+}
+
+/* Enhancements for the main CTA */
+.main-cta-section {
+    background-color: #ffebeb; /* Even lighter red/pink */
+    border: 3px solid var(--accent-color); /* Thicker border */
+    box-shadow: 0 0 25px rgba(217, 83, 79, 0.4); /* More prominent shadow */
+    padding: 30px;
+    text-align: center;
+    margin: 40px 0;
+    border-radius: 8px;
+}
+
+.main-cta-section h3 {
+    font-family: var(--primary-font);
+    font-size: 2.2em; /* Larger heading */
+    margin-bottom: 10px;
+    color: #cc0000; /* Darker red */
+}
+
+.main-cta-section p {
+    font-size: 1.2em;
+}
+
+.cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: #fff;
+    padding: 22px 45px; /* Slightly larger button */
+    text-decoration: none;
+    font-family: var(--primary-font);
+    font-size: 1.6em; /* Larger text */
+    font-weight: 700;
+    border-radius: 8px;
+    margin-top: 20px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    animation: cta-attention 1.5s ease-in-out infinite; /* Make it loop */
+}
+
+.cta-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}
+
+.button-icon {
+    margin-right: 12px; /* Slightly more space */
+    font-size: 1.2em; /* Make the icon larger */
+}
+
+.scroll-hint {
+    font-family: var(--primary-font);
+    font-size: 0.9em;
+    color: var(--meta-color);
+    margin-top: 20px;
+    opacity: 0; /* Will be animated */
+    animation: bounce-fade-in 2s ease-out forwards 3s; /* Delay and animate */
+}
+
+@keyframes bounce-fade-in {
+    0% { opacity: 0; transform: translateY(20px); }
+    50% { opacity: 1; transform: translateY(-5px); } /* Bounce up */
+    100% { opacity: 1; transform: translateY(0); } /* Settle */
+}
+
+/* Modify existing keyframe for CTA to loop */
+@keyframes cta-attention {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(0.98); }
+    30% { transform: scale(1.02); }
+    45% { transform: scale(1); }
+}
+
+.social-proof {
+    margin-top: 40px;
+}
+.social-proof h2 {
+    text-align: center;
+    color: #333;
+}
+
+.comments-container {
+    margin-top: 20px;
+}
+
+.comment-card {
+    background-color: var(--container-background);
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.comment-card p {
+    font-style: italic;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.commenter-name {
+    font-family: var(--primary-font);
+    font-weight: 700;
+    color: var(--text-color);
+}
+
+.site-footer {
+    background-color: #2b2b2b;
+    color: #ccc;
+    padding: 40px 20px;
+    text-align: center;
+    margin-top: 30px;
+}
+
+.footer-logo {
+    font-family: var(--primary-font);
+    font-size: 1.8em;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 15px;
+}
+
+.footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    font-family: var(--primary-font);
+}
+
+.footer-disclaimer {
+    font-size: 0.8em;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #999;
+}
+
+#progress-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 5px;
+    background-color: var(--accent-color);
+    width: 0%;
+    z-index: 1000;
+    transition: width 0.1s linear;
+}
+
+.content-image, .comment-card, .key-takeaways, .main-cta-section, .food-teaser-section {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.content-image.visible, .comment-card.visible, .key-takeaways.visible, .main-cta-section.visible, .food-teaser-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* The CTA button animation is now handled by an infinite loop, removed the .visible dependency */
+
+.cookie-dialog {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: #2b2b2b;
+    color: #f0f0f0;
+    padding: 20px;
+    box-shadow: 0 -4px 15px rgba(0,0,0,0.2);
+    z-index: 2000;
+    transform: translateY(150%);
+    transition: transform 0.8s ease-in-out;
+}
+
+.cookie-dialog.visible {
+    transform: translateY(0);
+}
+
+.cookie-dialog-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.cookie-text {
+    flex: 1;
+    min-width: 300px;
+}
+
+.cookie-text p {
+    margin: 0;
+    font-size: 0.9em;
+    line-height: 1.5;
+}
+
+.cookie-text a {
+    color: #ffffff;
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.cookie-actions {
+    display: flex;
+    align-items: center;
+}
+
+.cookie-button {
+    background-color: var(--accent-color);
+    color: #ffffff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 5px;
+    font-family: var(--primary-font);
+    font-size: 1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.cookie-button:hover {
+    background-color: #c9302c;
+    transform: scale(1.05);
+}
+
+@media (max-width: 768px) {
+    .main-nav { display: none; }
+    h1 { font-size: 1.8em; }
+    h2 { font-size: 1.2em; }
+    .cta-button { font-size: 1.2em; width: 100%; }
+    .cookie-dialog-content { flex-direction: column; text-align: center; }
+    .cookie-text { margin-bottom: 15px; }
+    .cookie-button { width: 100%; }
+}</style>
+      </head>
+      <body>
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>5 Everyday Foods To Avoid - WellnessWatch USA</title>
+
+    <!-- Google Fonts for Professional Typography: Lato for sans-serif, Merriweather for serif -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <!-- Link to your custom CSS file for styling the entire page -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<script type='text/javascript' src='//pl17904570.revenuecpmgate.com/4b/00/03/4b00035b718bfe8d764c0b0392f8b41e.js'></script>
+    <!-- Professional Header section of the website, sticky at the top -->
+    <header class="site-header">
+        <div class="header-container">
+            <!-- Website Logo for branding -->
+            <div class="logo">WellnessWatch</div>
+            <!-- Main Navigation links for easy site access -->
+            <nav class="main-nav">
+                <a href="#health-tips">Health Tips</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content Wrapper for the article, centered and styled -->
+    <main class="content-wrapper">
+        <article>
+            <!-- Article Header Section, including title, subtitle, and author info -->
+            <header class="article-header">
+                <!-- Category tag for the article, highlighting its urgency -->
+                <span class="category-tag">Urgent Health Alert</span>
+                <!-- Main article title, designed to grab attention -->
+                <h1>5 Everyday Foods in Your Kitchen That Doctors Are Quietly Begging You to Throw Away</h1>
+                <!-- Subtitle emphasizing the urgency and target audience for the article -->
+                <h2>A recent study linked #3 to chronic inflammation and memory loss. Millions of Americans still eat it every day.</h2>
+                <!-- Author information section, including photo and details -->
+                <div class="author-info">
+                    <!-- Author's photo for a personal touch -->
+                    <img src="https://placehold.co/100x100/EFEFEF/333333?text=A.N." alt="Author Photo" class="author-photo">
+                    <div class="author-details">
+                        <!-- Author's name and credentials -->
+                        <span>By Dr. Alain Ndi</span>
+                        <!-- Article meta information (specialization, last update date) -->
+                        <span class="meta-info">Health & Nutrition Specialist | Last updated October 1, 2025</span>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Featured Image for the article, visually representing the topic -->
+            <figure class="featured-image">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS377STqDyp07uV0_D_dwGQl4z4vwOpZwXLlw6XM0EqNvbzoovSFfk4-Fg&s=10" alt="Illustration of health danger" loading="lazy">
+                <figcaption>Some of your favorite foods may be hiding a dangerous secret.</figcaption>
+            </figure>
+
+            <!-- Article Body content, where the main information resides -->
+            <div class="article-body">
+                <!-- Introduction paragraph to hook the reader with a compelling statement -->
+                <p class="intro-paragraph">We try to eat healthy, but what if the real danger isn't in the fast food we avoid, but in the "normal" foods we trust every day? Top nutritionists and doctors have been raising alarms about common household ingredients that could be silently sabotaging our health from within.</p>
+                <!-- Paragraph detailing the pervasiveness of the issue, increasing urgency -->
+                <p>These aren't exotic, rare items. They are sitting in your cupboards and your fridge in Douala, Yaoundé, and across the USA right now, potentially contributing to fatigue, gut issues, and long-term illness. Before you cook your next meal, you need to see this list. What you learn in the next two minutes could change everything.</p>
+
+                <!-- Section for the first food to avoid: Vegetable Oil -->
+                <h3>1. That Big Bottle of Vegetable Oil</h3>
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZYjryK5ovDvk3Xi4Zz0R9W4o7xNe_4E2HGO_iIG6dDWNZmX43ZhG0UAtl&s=10" alt="A bottle of vegetable oil." class="content-image">
+                <p>Almost everyone has one. It's cheap, it's easy, and we use it for everything from frying plantains and puff-puff to dressing salads. But here’s the scary truth: many of these common oils (like canola, soy, and corn oil) are highly processed and become unstable when heated, creating trans fats. Scientists have linked these fats to severe inflammation, which is the root cause of many chronic diseases. The healthier alternative is surprisingly simple, but most people don't know it.</p>
+
+                <!-- Section for the second food/item to avoid: Old Plastic Containers -->
+                <h3>2. Your Old Plastic Containers</h3>
+                <img src="https://i5.walmartimages.com/seo/Mainstays-16-6-Cup-Plastic-Rectangle-Food-Storage-Container_71702230-b0f2-4520-970f-6a1226f98db0.12d01a1cfd6b876be0bba9335e512b94.jpeg" alt="Plastic food storage containers." class="content-image">
+                <p>We all have a cupboard full of them. They're perfect for storing leftover Ndolé or Jollof rice. But over time, especially when heated in a microwave, the plastic in older or cheaper containers can break down and leach chemicals like BPA and phthalates directly into your food. These hormone-disrupting chemicals have been linked in multiple studies to serious health complications. There's one simple test to see if your containers are safe, which we reveal further down.</p>
+                
+                <!-- Section for the third food to avoid: White Bread & Pasta -->
+                <h3>3. "Harmless" White Bread & Pasta</h3>
+                <img src="https://www.browneyedbaker.com/wp-content/uploads/2016/05/white-bread-51-SM.jpg" alt="A loaf of white bread." class="content-image">
+                <p>A staple in many homes, white bread is seen as a quick and easy food. However, these refined carbohydrates have been stripped of all their fiber and nutrients. What's left is a product that your body digests almost instantly, causing a massive spike in blood sugar. This repeated spiking can lead to insulin resistance, weight gain, and an increased risk for type 2 diabetes. It provides calories but very little real nutrition, leaving you hungry again soon after.</p>
+
+                <!-- Key Takeaways Section summarizes the points covered so far for quick review -->
+                <div class="key-takeaways">
+                    <h3>Quick Summary: What You've Learned So Far</h3>
+                    <ul>
+                        <li>Common vegetable oils can become toxic when heated.</li>
+                        <li>Old plastic containers may leak harmful chemicals into your food.</li>
+                        <li>Refined carbs like white bread can lead to dangerous blood sugar spikes.</li>
+                    </ul>
+                </div>
+
+                <!-- Teaser section for the fourth food, building suspense -->
+                <section class="food-teaser-section" id="food-teaser-4">
+                    <h3>4. The "Healthy" Drink You Reach For Every Morning...</h3>
+                    <p class="anxiety-text">You think it's giving you energy, but this popular beverage is secretly eroding your bone density and may even be linked to heart issues. Millions drink it daily, completely unaware. <strong>It's not coffee or tea.</strong></p>
+                </section>
+
+                <!-- Teaser section for the fifth food, further building suspense -->
+                <section class="food-teaser-section" id="food-teaser-5">
+                    <h3>5. The Ingredient in Almost Every Processed Snack...</h3>
+                    <p class="anxiety-text">This hidden killer is in your children's cereals, your favorite biscuits, and most store-bought sauces. It's more addictive than sugar and directly contributes to inflammation and metabolic syndrome. Once you know what it is, you'll see it everywhere.</p>
+                </section>
+                
+                <!-- Main Call to Action (CTA) section to reveal the remaining foods, highly prominent -->
+                <section class="main-cta-section" id="reveal-final-foods">
+                    <h3>WARNING: The Final 2 Foods Are The Most ShockING!</h3>
+                    <p>You've seen the first 3, but the final 2 are even more pervasive and dangerously disguised. Are you ready to expose them and protect your family?</p>
+                    <!-- CTA button to click for more information, designed to be irresistible -->
+                    <a href="https://www.revenuecpmgate.com/rc99fa58?key=c404449cb4ca4dbfb6d70b5b701413bd" class="cta-button">
+                        <span class="button-icon">🚨</span> Click Here to IMMEDIATELY See The Last 2 Most Dangerous Foods!
+                    </a>
+                    <!-- Hint to scroll down for an additional message, encouraging further engagement -->
+                    <p class="scroll-hint">Scroll down for an urgent message from Dr. Ndi...</p>
+                </section>
+            </div>
+            
+            <!-- Social Proof Section displaying reader testimonials to build trust -->
+            <section class="social-proof">
+                <h2>What Our Readers in the USA Are Saying...</h2>
+                <div class="comments-container">
+                    <!-- Individual comment card 1 -->
+                    <div class="comment-card">
+                        <p>"Wow, I had no idea about #3. I've been eating that for years. Threw it out immediately after reading this. Thank you for this important information!"</p>
+                        <span class="commenter-name">- Marie C., Bonapriso, Douala</span>
+                    </div>
+                    <!-- Individual comment card 2 -->
+                    <div class="comment-card">
+                        <p>"This is shocking. My mother always warned me about the oil but I never listened. Sharing this with my entire family now."</p>
+                        <span class="commenter-name">- Paul K., Mvog-Ada, Yaoundé</span>
+                    </div>
+                    <!-- Individual comment card 3 - NEW -->
+                    <div class="comment-card">
+                        <p>"I thought I was healthy, but this article made me realize I need to re-evaluate my pantry. Game-changer!"</p>
+                        <span class="commenter-name">- Sarah L., Houston, TX</span>
+                    </div>
+                    <!-- Individual comment card 4 - NEW -->
+                    <div class="comment-card">
+                        <p>"My doctor mentioned inflammation, but I never knew these common foods were the culprit. So glad I found this."</p>
+                        <span class="commenter-name">- David R., Miami, FL</span>
+                    </div>
+                    <!-- Individual comment card 5 - NEW -->
+                    <div class="comment-card">
+                        <p>"The part about plastic containers was eye-opening. Immediately switched to glass. Highly recommend this read!"</p>
+                        <span class="commenter-name">- Jessica T., New York, NY</span>
+                    </div>
+                </div>
+            </section>
+        </article>
+    </main>
+
+    <!-- Professional Footer section of the website, containing legal and contact info -->
+    <footer class="site-footer">
+        <!-- Footer logo for brand recognition -->
+        <div class="footer-logo">WellnessWatch</div>
+        <!-- Footer navigation/legal links -->
+        <div class="footer-links">
+            <a href="#privacy">Privacy Policy</a> | <a href="#contact">Contact Us</a>
+        </div>
+        <!-- Disclaimer text for medical advice, crucial for health-related content -->
+        <p class="footer-disclaimer">Disclaimer: The information on this website is for informational purposes only and is not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your physician or other qualified health provider with any questions you may have regarding a medical condition.</p>
+    </footer>
+
+    <!-- Link to your JavaScript file for interactive functionalities and dynamic content -->
+    <script src="script.js"></script>
+
+    <!-- COOKIE CONSENT DIALOG (HTML is loaded here, JS will make it appear based on user consent) -->
+    <div id="cookie-consent-dialog" class="cookie-dialog">
+        <div class="cookie-dialog-content">
+            <div class="cookie-text">
+                <p><strong>Our Commitment to Your Privacy</strong></p>
+                <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies. Read our <a href="#privacy">Privacy Policy</a>.</p>
+            </div>
+            <div class="cookie-actions">
+                <button id="accept-cookies-btn" class="cookie-button">Accept All</button>
+            </div>
+        </div>
+    </div>
+<script type='text/javascript' src='//pl17904570.revenuecpmgate.com/4b/00/03/4b00035b718bfe8d764c0b0392f8b41e.js'></script></body>
+</html>
+        <script>/**
+ * Main script for the professional landing page.
+ * Handles dynamic features like animations, progress bar, and cookie consent.
+ */
+document.addEventListener('DOMContentLoaded', function() {
+
+    // --- 1. Reading Progress Bar ---
+    const progressBar = document.createElement('div');
+    progressBar.id = 'progress-bar';
+    document.body.prepend(progressBar);
+
+    function updateProgressBar() {
+        const totalHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const progress = (window.scrollY / totalHeight) * 100;
+        progressBar.style.width = progress + '%';
+    }
+
+    // --- 2. Fade-in Elements on Scroll ---
+    // Added '.food-teaser-section' to the selector to make the new teasers fade in.
+    const fadeElements = document.querySelectorAll('.content-image, .comment-card, .key-takeaways, .main-cta-section, .food-teaser-section');
+    
+    const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.1
+    };
+
+    const fadeInObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, observerOptions);
+
+    fadeElements.forEach(el => fadeInObserver.observe(el));
+
+    // --- 3. Cookie Consent Dialog Logic ---
+    const cookieDialog = document.getElementById('cookie-consent-dialog');
+    const acceptCookiesBtn = document.getElementById('accept-cookies-btn');
+
+    // Function to show the cookie dialog
+    function showCookieDialog() {
+        // Check localStorage to see if cookies have already been accepted
+        if (!localStorage.getItem('cookiesAccepted')) {
+            // Use a timeout to delay the appearance, making it less intrusive
+            setTimeout(() => {
+                cookieDialog.classList.add('visible');
+            }, 2000); // Show after 2 seconds
+        }
+    }
+    
+    // Function to hide the cookie dialog and save consent
+    function acceptCookies() {
+        // Save the user's consent in localStorage. The value can be anything.
+        localStorage.setItem('cookiesAccepted', 'true');
+        cookieDialog.classList.remove('visible');
+    }
+
+    // Add click event listener to the accept button
+    if (acceptCookiesBtn) {
+        acceptCookiesBtn.addEventListener('click', acceptCookies);
+    }
+    
+    // --- Global Scroll Event Listener ---
+    window.addEventListener('scroll', updateProgressBar);
+    
+    // --- Initial Function Calls on Page Load ---
+    updateProgressBar();
+    showCookieDialog();
+
+});</script>
+      </body>
+      </html>
+    
