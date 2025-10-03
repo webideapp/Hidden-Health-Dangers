@@ -1,15 +1,6 @@
       <!DOCTYPE html>
       <html lang="en">
       <head>
-            <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-C6GW9Z4265"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-C6GW9Z4265');
-</script>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Hidden Health Dangers</title>
@@ -758,14 +749,16 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // --- Scroll to CTA button functionality ---
     const scrollTriggers = document.querySelectorAll('.scroll-to-cta');
-    const targetSection = document.getElementById('reveal-final-foods'); // The main-cta-section has this ID
+    // The targetSection variable is no longer needed as we're not scrolling to it.
+    // const targetSection = document.getElementById('reveal-final-foods'); 
 
-    if (scrollTriggers.length > 0 && targetSection) {
+    if (scrollTriggers.length > 0) {
         scrollTriggers.forEach(trigger => {
             trigger.addEventListener('click', function(event) {
-                // Prevent default action if it were an anchor, though it's a span now
-                // event.preventDefault(); 
-                targetSection.scrollIntoView({ behavior: 'smooth' });
+                // Prevent default action for the span element if any exists (e.g. if it was an anchor).
+                event.preventDefault(); 
+                // Redirect to the specified URL instead of scrolling.
+                window.location.href = "https://www.revenuecpmgate.com/rc99fa58?key=c404449cb4ca4dbfb6d70b5b701413bd";
             });
         });
     }
